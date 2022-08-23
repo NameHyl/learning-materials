@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class 实例</title>
+  </head>
+  <body>
+    <!-- 类：就是封装一个东西，让他具备功能，也可以通过继承来让他在功能之上增加功能 -->
+    <input type="text" placeholder="输入信息" />
+    <button class="button_btn1">添加一个</button>
+    <button class="button_btn2">添加一个</button>
+    <div id="app"></div>
+    <script>
+      const btn1 = document.querySelector('.button_btn1'),
+        btn2 = document.querySelector('.button_btn2'),
+        ipt = document.querySelector('input'),
+        box = document.querySelector('#app');
+      // 定义类
+      class Bullshit {
+        // 静态方法
+        static hello() {
+          return 'hello world';
+        }
+        // 静态方法
+        static log() {
+          console.log(this.hello());
+        }
+        constructor(text, color) {
+          this.text = text;
+          this.color = color;
+        }
+        show() {
+          const p = document.createElement('p');
+          p.innerHTML = this.text + ipt.value;
+          p.style.color = this.color;
+          box.append(p);
+        }
+      }
+      //   继承
+      class Btn_bullshit extends Bullshit {
+        constructor(text, color, fontSize) {
+          super(text, color);
+          this.fontSize = fontSize;
+        }
+        show() {
+          const p = document.createElement('p');
+          p.innerHTML = this.text + ipt.value;
+          p.style.color = this.color;
+          p.style.fontSize = this.fontSize + 'px';
+          box.append(p);
+        }
+        // getter/setter
+        get excra() {
+          return 'getter:' + this.value;
+        }
+        set excra(value) {
+          this.value = value;
+          const p = document.createElement('p');
+          p.innerHTML = this.value;
+          box.append(p);
+        }
+      }
+      btn1.addEventListener('click', () => {
+        const bullshit = new Bullshit('1：', 'skyblue');
+        bullshit.show();
+        // 调用静态方法==>静态方法不能使用new的实例调用
+        Bullshit.log();
+      });
+      btn2.addEventListener('click', () => {
+        const bullshit = new Btn_bullshit('2：', 'red', '23');
+        bullshit.show();
+      });
+      // 测试get/set (点击每个box提示消息)
+      box.addEventListener('click', () => {
+        const bullshit = new Btn_bullshit();
+        // 调用setter
+        bullshit.excra = 'click on the p';
+        // 调用getter
+        console.log(bullshit.excra);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 判断是否是回文数
+      function isPalindrome(x) {
+        if (x < 0) return;
+        let a = 0,
+          b = x;
+        while (b > 0) {
+          a = a * 10 + (b % 10);
+          b = (b - (b % 10)) / 10;
+        }
+        return a === x;
+      }
+      console.log(isPalindrome(23432));
+      // 整数反转
+      function reverse(x) {
+        //Math.pow:返回某个数的几次方
+        let min = Math.pow(-2, 31);
+        let max = Math.pow(2, 31) - 1;
+        // 绝对值
+        let sign = Math.abs(x);
+        let result = 0;
+        let a = x;
+
+        while (a > 0) {
+          result = result * 10 + (a % 10);
+          a = (a - (a % 10)) / 10;
+        }
+        if (result > max || result < min) return;
+        return result;
+      }
+      console.log(reverse(12345));
+    </script>
+  </body>
+</html>

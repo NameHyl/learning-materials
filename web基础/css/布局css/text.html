@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        /* 写入模式属性接受值水平 tb、垂直 rl 和垂直 lr。 */
+        writing-mode: vertical-lr;
+      }
+      .box {
+        writing-mode: vertical-rl;
+      }
+      /* 当一个嵌套框被分配给它的父级的不同的写入模式时，一个内联级别的框将显示，就好像它有 display:inline 块一样。 */
+      .box span {
+        writing-mode: horizontal-tb;
+        padding: 10px;
+        border: 1px solid rebeccapurple;
+      }
+      .circle {
+        width: 100px;
+        height: 100px;
+        background-color: yellowgreen;
+        clip-path: circle(50px at 50px 50px);
+      }
+      .polygon {
+        width: 100px;
+        height: 100px;
+        background-color: yellowgreen;
+        clip-path: polygon(
+          50% 0%,
+          80% 10%,
+          100% 35%,
+          100% 70%,
+          80% 90%,
+          50% 100%,
+          20% 90%,
+          0% 70%,
+          0% 35%,
+          20% 10%
+        );
+      }
+    </style>
+    <style>
+      .triangle2rect {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: aniContainer 2s infinite alternate;
+      }
+      .triangle2rect div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .a {
+        background: deeppink;
+        clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+        animation: a 2s infinite alternate;
+      }
+      .b {
+        background: deeppink;
+        clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+        animation: b 2s infinite alternate;
+      }
+      .c {
+        background: deeppink;
+        clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+        animation: c 2s infinite alternate;
+      }
+      .d {
+        background: deeppink;
+        clip-path: polygon(100% 100%, 0% 100%, 50% 50%);
+        animation: d 2s infinite alternate;
+      }
+      @keyframes a {
+        0%,
+        10% {
+          background: deeppink;
+          clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+        }
+        90%,
+        100% {
+          background: #000;
+          clip-path: polygon(0% 100%, 25% 100%, 12.5% 0%);
+        }
+      }
+      @keyframes b {
+        0%,
+        10% {
+          background: deeppink;
+          clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+        }
+        90%,
+        100% {
+          background: #000;
+          clip-path: polygon(25% 0%, 50% 0%, 37.5% 100%);
+        }
+      }
+      @keyframes c {
+        0%,
+        10% {
+          background: deeppink;
+          clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+        }
+        90%,
+        100% {
+          background: #000;
+          clip-path: polygon(62.5% 0%, 75% 100%, 50% 100%);
+        }
+      }
+      @keyframes d {
+        0%,
+        10% {
+          background: deeppink;
+          clip-path: polygon(100% 100%, 0% 100%, 50% 50%);
+        }
+        90%,
+        100% {
+          background: #000;
+          clip-path: polygon(100% 0%, 87.5% 100%, 75% 0%);
+        }
+      }
+      @keyframes aniContainer {
+        0%,
+        10% {
+          width: 100px;
+          height: 100px;
+        }
+        90%,
+        100% {
+          width: 250px;
+          height: 60px;
+        }
+      }
+    </style>
+    <style>
+      .text-section {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+      }
+      p,
+      h1 {
+        font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica,
+          'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei',
+          sans-serif;
+        text-align: center;
+      }
+
+      .wrap-before {
+        shape-outside: polygon(0 0, 0 100%, 100% 100%, 0 50%, 100% 0);
+        float: left;
+        width: 50%;
+        height: 100%;
+      }
+
+      .wrap-after {
+        shape-outside: polygon(100% 0, 100% 100%, 0% 100%, 100% 50%, 0% 0);
+        float: right;
+        width: 50%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hhhhhh</h1>
+    <div class="box">this <span>hhh</span> is a test</div>
+    <div class="circle"></div>
+    <div class="polygon"></div>
+    <hgroup class="triangle2rect">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+      <div class="d"></div>
+    </hgroup>
+    <div class="text-section">
+      <div class="wrap-before"></div>
+      <div class="wrap-after"></div>
+      <h1>Hello CSSshapes</h1>
+      <p>
+        The shape-outside CSS property uses shape values to define the float
+        area for a float and will cause inline content to wrap around the shape
+        instead of the float's bounding box. For interpolating between one basic
+        shape and a se For interpolating between one basic shape and a se For
+        interpolating between one basic shape and a se For interpolating.
+      </p>
+    </div>
+  </body>
+</html>

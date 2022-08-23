@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      type：枚举加双指针
+      //数字大了会卡死
+            输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
+            序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
+            输入：target = 9
+            输出：[[2,3,4],[4,5]]
+
+            //分析 ==>i * k + Sum(k - 1)
+            // 两个值
+            let sum = 2 * i + 1;
+            if (sum == number) {
+              console.log(i, i + 1);
+            }
+            // 三个值
+            let b = 3 * i + 2 + 1; 3
+            if (b == number) {
+              console.log(i, i + 1, i + 2);
+            }
+            // 四个值
+            let c = 4 * i + 3 + 2 + 1; 6
+            if (c == number) {
+              console.log(i, i + 1, i + 2, i + 3);
+            }
+        */
+      var findContinuousSequence = function (target) {
+        // 连续正整数序列
+        if (target <= 0) return;
+        //接收结果
+        let arr = [];
+        let result;
+        // 排除 0和它本身相加 最大数除以2==向上取整 比如9 ，4+5 5以后就没用了
+        for (let i = 1; i < target / 2; i++) {
+          // 出现最少两个 最多它本身减去一那么多个 比如3
+          for (let k = 2; k < target; k++) {
+            result = i * k + Sum(k - 1) === target;
+            //k代表几个值
+            if (result) {
+              let arr1 = [];
+              for (let j = k - 1; j >= 0; j--) {
+                //j代表要加多少
+                arr1.push(i + j);
+              }
+              arr.push(arr1.sort((a, b) => a - b));
+            }
+          }
+        }
+        return arr;
+      };
+      //   阶乘
+      function Sum(num) {
+        let result = 0;
+        for (let i = 1; i <= num; i++) {
+          result += i;
+        }
+        return result;
+      }
+      console.log(findContinuousSequence(10000));
+    </script>
+  </body>
+</html>

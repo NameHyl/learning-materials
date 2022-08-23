@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.
+      function add() {
+        // let args = Array.prototype.slice.call(arguments);
+        let args = [...arguments];
+        let inner = function () {
+          args.push(...arguments);
+          return inner;
+        };
+        // 重写toString：因为执行函数时，都会执行toString方法
+        inner.toString = function () {
+          return args.reduce(function (prev, cur) {
+            return prev + cur;
+          });
+        };
+        return inner;
+      }
+      let result = add(1)(2)(3)(4);
+      //   调用
+      //   console.log(result.toString());
+      //   console.log(parseInt(result));
+      // 2.
+      const arr = [
+        { name: 'a0' },
+        { name: 'a1' },
+        { name: 'a2' },
+        { name: 'a3' },
+      ];
+      //   const curring = (name) => (element) => element[name];
+      const curring = (name) => {
+        return (element) => {
+          return element[name];
+        };
+      };
+      const getName = curring('name');
+      console.log(arr.map(getName));
+    </script>
+  </body>
+</html>

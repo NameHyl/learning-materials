@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 这里使用窗口变化来演示节流
+      function colors() {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        document.body.style.background = `rgb(${r},${g},${b})`;
+        console.log(1);
+      }
+      // 核心函数==>主要是通过时间来控制是否执行
+      function throttle(func, delay) {
+        //记录上一次时间
+        let pre = 0;
+        return function () {
+          let now = Date.now();
+          if (now - pre > delay) {
+            func();
+            pre = now;
+          }
+        };
+      }
+      // resize  浏览器窗口被重置时触发的
+      window.addEventListener('resize', throttle(colors, 2000));
+    </script>
+  </body>
+</html>

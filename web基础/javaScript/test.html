@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 对象解构
+      const getdata = () => {
+        return {
+          msg: {
+            data: {
+              result: [
+                { name: '1', age: '1' },
+                { name: '2', age: 2 },
+              ],
+            },
+          },
+        };
+      };
+      const {
+        msg: {
+          data: { result },
+        },
+      } = getdata();
+      console.log(result);
+
+      // propt
+      //   let ipt = parseInt(window.prompt('输入'));
+      //   console.log(ipt);
+    </script>
+  </body>
+</html>
